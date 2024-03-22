@@ -5,11 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:manajemen_sdm/model/employee_model.dart';
 
 class EmployeeController {
-  final String baseUrl = 'http://127.0.0.1:3000';
+  final String baseUrl = 'http://sdm-management.infinityfreeapp.com';
 
   Future<int> registerEmployee(String name, String position) async {
     final response = await http.post(
-      Uri.http("192.168.1.250:3000", "register"),
+      Uri.parse('$baseUrl/'),
       headers: {
         "Access-Control-Allow-Origin": "*",
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ class EmployeeController {
   }
 
   Future<List<Employee>> getEmployees() async {
-    final response = await http.get(Uri.parse('$baseUrl/employees'));
+    final response = await http.get(Uri.parse('$baseUrl/?employees'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
       return data.map((item) => Employee.fromJson(item)).toList();
