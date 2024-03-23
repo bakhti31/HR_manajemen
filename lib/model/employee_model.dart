@@ -13,7 +13,7 @@ class Employee {
 
   factory Employee.fromJson(Map<String, dynamic> json) {
     return Employee(
-      id: json['id'],
+      id: int.parse(json['id']),
       name: json['name'],
       position: json['position'],
     );

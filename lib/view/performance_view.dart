@@ -24,7 +24,8 @@ class _PerformanceViewState extends State<PerformanceView> {
   @override
   void initState() {
     super.initState();
-    _futurePerformance = _controller.getEmployeePerformance(employeeId);
+    _futurePerformance =
+        _controller.getEmployeePerformance(employeeId.toString());
     _futureEmployees = _employeeController.getEmployees();
   }
 
@@ -53,8 +54,8 @@ class _PerformanceViewState extends State<PerformanceView> {
                         onTap: () {
                           setState(() {
                             employeeId = index;
-                            _futurePerformance =
-                                _controller.getEmployeePerformance(employeeId);
+                            _futurePerformance = _controller
+                                .getEmployeePerformance(employeeId.toString());
                           });
                         },
                       );
@@ -78,7 +79,7 @@ class _PerformanceViewState extends State<PerformanceView> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(
-                            'Performance: ${snapshot.data![index].performance}'),
+                            'Performance: ${snapshot.data![index].performance.toString()}'),
                         subtitle: Text(
                             "Employee Id: ${snapshot.data![index].employeeId} "),
                       );

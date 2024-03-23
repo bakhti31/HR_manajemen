@@ -13,8 +13,8 @@ class Performance {
 
   factory Performance.fromJson(Map<String, dynamic> json) {
     return Performance(
-      id: json['id'],
-      employeeId: json['employee_id'],
+      id: int.parse(json['id']),
+      employeeId: int.parse(json['employee_id']),
       performance: json['rating'],
     );
   }

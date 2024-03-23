@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AttendanceController {
-  final String baseUrl = 'http://sdm-management.infinityfreeapp.com';
+  final String baseUrl = 'http://192.168.1.250';
 
   Future<void> markAttendance(int employeeId) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/'),
+      Uri.parse('$baseUrl/index.php'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'employee_id': employeeId,

@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:manajemen_sdm/model/performance_model.dart';
 
 class PerformanceController {
-  final String baseUrl = 'http://sdm-management.infinityfreeapp.com';
+  final String baseUrl = 'http://192.168.1.250';
   Future<void> inputPerformance(int employeeId, String rating) async {
     final response = await http.post(
       Uri.parse('$baseUrl/'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: json.encode({
-        'employee_id': employeeId,
+        'employee_id': employeeId.toString(),
         'month': DateTime.now().month,
         'year': DateTime.now().year,
         'rating': rating
@@ -22,7 +22,7 @@ class PerformanceController {
     }
   }
 
-  Future<List<Performance>> getEmployeePerformance(int employeeId) async {
+  Future<List<Performance>> getEmployeePerformance(String employeeId) async {
     final response = await http.get(
       Uri.parse('$baseUrl/?performance=1&employeeId=$employeeId'),
     );

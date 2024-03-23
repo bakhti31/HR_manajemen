@@ -88,7 +88,7 @@ class _AttendanceViewState extends State<AttendanceView> {
                 return ListTile(
                   title: Text(snapshot.data![index].name),
                   onTap: () {
-                    _markAttendance(snapshot.data![index].id);
+                    _markAttendance((snapshot.data![index].id));
                   },
                 );
               },

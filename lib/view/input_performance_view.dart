@@ -54,7 +54,7 @@ class _InputPerformanceViewState extends State<InputPerformanceView> {
                           title: Text(snapshot.data![index].name),
                           onTap: () {
                             setState(() {
-                              employeeId = index;
+                              employeeId = snapshot.data![index].id;
                             });
                           },
                         );
