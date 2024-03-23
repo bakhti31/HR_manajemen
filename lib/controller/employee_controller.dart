@@ -1,6 +1,8 @@
 // employee_controller.dart
 
 import 'dart:convert';
+// import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:manajemen_sdm/model/employee_model.dart';
 
@@ -12,17 +14,17 @@ class EmployeeController {
       Uri.parse('$baseUrl/index.php'),
       headers: {
         "Accept": "application/x-ww-form-urlencoded",
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: json.encode({
+      body: {
         'name': name,
         'position': position,
-      }),
+      },
       // encoding: Encoding.getByName("utf-8"),
     );
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
-      print(response.body);
+      debugPrint(response.body);
       return responseData['id'];
     } else {
       throw Exception('Failed to register employee ${(response.statusCode)}');

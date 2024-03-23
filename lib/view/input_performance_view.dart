@@ -1,14 +1,10 @@
-// input_performance_view.dart
-
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:manajemen_sdm/controller/performance_controller.dart';
 import 'package:manajemen_sdm/controller/employee_controller.dart';
 import 'package:manajemen_sdm/model/employee_model.dart';
 
 class InputPerformanceView extends StatefulWidget {
-  const InputPerformanceView({super.key});
+  const InputPerformanceView({Key? key}) : super(key: key);
 
   @override
   _InputPerformanceViewState createState() => _InputPerformanceViewState();
@@ -19,7 +15,7 @@ class _InputPerformanceViewState extends State<InputPerformanceView> {
   final TextEditingController _ratingController = TextEditingController();
   final EmployeeController _employeeController = EmployeeController();
   late Future<List<Employee>> _futureEmployees;
-  int employeeId = 0;
+  int employeeId = 1;
 
   @override
   void initState() {
@@ -53,9 +49,7 @@ class _InputPerformanceViewState extends State<InputPerformanceView> {
                         return ListTile(
                           title: Text(snapshot.data![index].name),
                           onTap: () {
-                            setState(() {
-                              employeeId = snapshot.data![index].id;
-                            });
+                            employeeId = snapshot.data![index].id;
                           },
                         );
                       },
@@ -66,25 +60,25 @@ class _InputPerformanceViewState extends State<InputPerformanceView> {
             ),
             TextField(
               controller: _ratingController,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               decoration: const InputDecoration(labelText: 'Rating'),
             ),
             ElevatedButton(
               onPressed: () async {
                 try {
                   final String rating = _ratingController.text;
-                  await _controller.inputPerformance(employeeId, rating);
-                  // ignore: use_build_context_synchronously
+                  await _controller.inputPerformance(
+                      employeeId.toString(), rating);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Performance input successful'),
                     ),
                   );
                 } catch (e) {
-                  // ignore: use_build_context_synchronously
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Failed to input performance: $e'),
+                      content:
+                          Text('Failed to input performance: ${e.toString()}'),
                     ),
                   );
                 }

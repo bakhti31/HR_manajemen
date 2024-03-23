@@ -1,6 +1,6 @@
 // attendance_controller.dart
 
-import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AttendanceController {
@@ -9,13 +9,17 @@ class AttendanceController {
   Future<void> markAttendance(int employeeId) async {
     final response = await http.post(
       Uri.parse('$baseUrl/index.php'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({
-        'employee_id': employeeId,
+      headers: {
+        "Accept": "application/x-ww-form-urlencoded",
+      },
+      body: {
+        'employee_id': employeeId.toString(),
         'date': DateTime.now().toString()
-      }), // Change employee_id as needed
+      }, // Change employee_id as needed
     );
+    debugPrint(response.body);
     if (response.statusCode != 200) {
+      debugPrint(response.body);
       throw Exception('Failed to mark attendance');
     }
   }

@@ -20,7 +20,7 @@ class _PerformanceViewState extends State<PerformanceView> {
   late Future<List<Performance>> _futurePerformance;
   final EmployeeController _employeeController = EmployeeController();
   late Future<List<Employee>> _futureEmployees;
-  int employeeId = 1;
+  int employeeId = 0;
   @override
   void initState() {
     super.initState();
@@ -53,7 +53,7 @@ class _PerformanceViewState extends State<PerformanceView> {
                         title: Text(snapshot.data![index].name),
                         onTap: () {
                           setState(() {
-                            employeeId = index;
+                            employeeId = snapshot.data![index].id;
                             _futurePerformance = _controller
                                 .getEmployeePerformance(employeeId.toString());
                           });

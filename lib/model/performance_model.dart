@@ -11,7 +11,7 @@ class Performance {
     required this.performance,
   });
 
-  factory Performance.fromJson(Map<String, dynamic> json) {
+  factory Performance.fromJson(Map<String?, dynamic> json) {
     return Performance(
       id: int.parse(json['id']),
       employeeId: int.parse(json['employee_id']),
